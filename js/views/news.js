@@ -24,8 +24,8 @@ define([
       return this;
     },
 
-    render: function(date) {
-      newsCollection.fetch({reset: true, url: newsCollection.url(date)})
+    render: function(year, month, day) {
+      newsCollection.fetch({reset: true, url: newsCollection.url(year, month, day)})
       this.$el.html('');
       
       return this;

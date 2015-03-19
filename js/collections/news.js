@@ -8,13 +8,12 @@ define([
   var NewsCollection = Backbone.Collection.extend({
     model: NewsModel,
 
-    url: function(date) {
+    url: function(year, month, day) {
       var _url = 'http://7xi577.com1.z0.glb.clouddn.com/api/2/news/';
-
-      if (date) {
-        _url = _url + 'before/' + date + '.json';
+      if (year) {
+        _url = _url + 'before/' + this.dateFormat(year, month, day) + '.json';
       } else {
-        date = new Date()
+        var date = new Date();
         _url = _url + 'latest.json?t=' + date.getMonth() + (date.getMinutes() >> 2);
       }
       
@@ -41,6 +40,18 @@ define([
       return resp.news;
     },
     
+    dateFormat: function(year, month, day) {
+      year = Number(year);
+      month = Number(month) - 1;
+      day = Number(day) + 1;
+      
+      var d = new Date(year, month, day);
+      var date = String(d.getFullYear());
+      date = date + ((d.getMonth() < 9) ? '0' : '') + (d.getMonth() + 1);
+      date = date + ((d.getDate() < 10) ? '0' : '') + d.getDate();
+      
+      return date;
+    }
   });
 
   return new NewsCollection();

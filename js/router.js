@@ -7,14 +7,15 @@ define([
   var Router = Backbone.Router.extend({
     routes: {
       '(!/)': 'news',
-      '(!/)news/:date': 'news'
+      '(!/)news/:year/:month/:day': 'news',
+      '*defAction': 'defAction'
     },
 
-    news: function(date) {
+    news: function(year, month, day) {
       require([
         'views/news'
       ], function(newsView) {
-        newsView.render(date);
+        newsView.render(year, month, day);
       });
     },
 
