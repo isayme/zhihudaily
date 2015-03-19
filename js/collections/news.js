@@ -14,7 +14,7 @@ define([
       if (date) {
         _url = _url + 'before/' + date + '.json';
       } else {
-        _url = _url + 'latest.json';
+        _url = _url + 'latest.json?t=' + (new Date()).getTime();
       }
       
       return _url;
