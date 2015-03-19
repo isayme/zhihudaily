@@ -6,10 +6,10 @@ define([
 
   var NewsModel = Backbone.Model.extend({
     defaults: {
-      images: ['http://7xi577.com1.z0.glb.clouddn.com/default.jpg'],
+      image: '',
+      thumbnail: 'http://7xi577.com1.z0.glb.clouddn.com/default.png',
       type: 0,
       id: 0,
-      ga_prefix: '',
       title: ''
     }
   });

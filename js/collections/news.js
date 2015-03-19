@@ -9,7 +9,7 @@ define([
     model: NewsModel,
 
     url: function(date) {
-      var _url = 'http://7xi577.com1.z0.glb.clouddn.com/api/4/news/';
+      var _url = 'http://7xi577.com1.z0.glb.clouddn.com/api/2/news/';
 
       if (date) {
         _url = _url + 'before/' + date + '.json';
@@ -21,7 +21,23 @@ define([
     },
     
     parse: function(resp) {
-      return resp.stories;
+      if (!resp || !resp.news) {
+        return [];
+      }
+
+      for (var i = 0; i < resp.news.length; i++) {
+        var thumbnail = resp.news[i].image;
+
+        var idx = thumbnail.indexOf('://')
+        if (idx >= 0) {
+          thumbnail = thumbnail.substr(idx + 3);
+        }
+        var idx = thumbnail.indexOf('/')
+        thumbnail = thumbnail.substr(idx);
+        thumbnail = 'http://7xi577.com1.z0.glb.clouddn.com/' + resp.date + thumbnail;
+        resp.news[i].thumbnail =  thumbnail;
+      }
+      return resp.news;
     },
     
   });
