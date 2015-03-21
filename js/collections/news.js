@@ -14,7 +14,8 @@ define([
         _url = _url + 'before/' + this.dateFormat(year, month, day) + '.json';
       } else {
         var date = new Date();
-        _url = _url + 'latest.json?t=' + date.getMonth() + (date.getMinutes() >> 2);
+        // about 10min cache
+        _url = _url + 'latest.json?t=' + (date.getTime() >> 19);
       }
       
       return _url;
