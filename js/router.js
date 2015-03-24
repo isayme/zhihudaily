@@ -1,7 +1,9 @@
 define([
   'jquery',
   'underscore',
-  'backbone'
+  'backbone',
+  'views/nav',
+  'views/title'
 ], function($, _, Backbone) {
 
   var Router = Backbone.Router.extend({
@@ -24,6 +26,7 @@ define([
     }
   });
 
-  return new Router();
-
+  window.router = new Router();
+  
+  return window.router;
 })

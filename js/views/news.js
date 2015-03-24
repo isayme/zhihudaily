@@ -12,10 +12,10 @@ define([
 
     initialize: function() {
       this.renderLoading();
-      this.listenTo(newsCollection, 'reset', this.update_news);
+      this.listenTo(newsCollection, 'reset', this.updateNews);
     },
     
-    update_news: function(collection) {
+    updateNews: function(collection) {
       this.$el.html('');
       for (var i = 0, l = collection.length; i < l; i++) {
         var model = collection.at(i);
@@ -37,6 +37,8 @@ define([
     },
     
     renderError: function(collection, resp, options) {
+      newsCollection.trigger('date:changed');
+      
       if (resp.status === 404) {
         this.$el.html(
           '<div class="error">\
