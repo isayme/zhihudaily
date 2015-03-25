@@ -20,7 +20,12 @@ define([
       
       console.log(welcome);
       
-      Backbone.history.start();
+      require([
+        'views/nav'
+      ], function() {
+        Backbone.history.start();
+      });
+      
     }
   };
 

@@ -37,35 +37,32 @@ define([
     
     dateFormat: function(year, month, day) {
       var date = new Date();
+      var d = new Date(year, Number(month) - 1, 1 + Number(day));
       
       // about 10min cache
       var format = 'latest.json?t=' + (date.getTime() >> 19);
-      
-      if (!year) {
-        return format;
+
+      if (!_.isNaN(d.getTime())) {
+        date.setDate(date.getDate() + 1);
+        // date is today, return lastet data.
+        if (date.toLocaleDateString() !== d.toLocaleDateString()) {
+          format = 'before/' + this.dateToStr(d) + '.json';
+        }
       }
       
-      year = Number(year);
-      month = Number(month) - 1;
-      day = Number(day) + 1;
-      var d = new Date(year, month, day);
+      return format;
+    },
+    
+    dateToStr: function(date) {
+      var format = '';
       
-      if ((date.getDate() + 1) === d.getDate()
-        && date.getMonth() === d.getMonth()
-        && date.getFullYear() === d.getFullYear())
-      {
-        return format;
-      }
-      
-      var format = 'before/' + d.getFullYear();
-      format = format + ((d.getMonth() < 9) ? '0' : '') + (d.getMonth() + 1);
-      format = format + ((d.getDate() < 10) ? '0' : '') + d.getDate();
-      format = format + '.json';
+      format = format + date.getFullYear();
+      format = format + ((date.getMonth() < 9) ? '0' : '') + (date.getMonth() + 1);
+      format = format + ((date.getDate() < 10) ? '0' : '') + date.getDate();
       
       return format;
     }
   });
 
   return new NewsCollection();
-
 })

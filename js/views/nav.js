@@ -1,9 +1,8 @@
 define([
   'jquery',
   'underscore',
-  'backbone',
-  'collections/news'
-], function($, _, Backbone, newsCollection) {
+  'backbone'
+], function($, _, Backbone) {
 
   var NavView = Backbone.View.extend({
     el: '#nav',
@@ -15,27 +14,21 @@ define([
 
     initialize: function() {
       this.curdate = new Date();
-      this.sysdate = this.curdate;
-      this.listenTo(newsCollection, 'date:changed', this.dateChanged);
+      this.listenTo(window.router, 'route:news', this.routeChanged);
     },
     
-    dateChanged: function(date) {
-      if (!date) return;
-      date = date.split(' ')[0]
-      var arr = date.split('.');
-      this.curdate = new Date(Number(arr[0]), Number(arr[1]) - 1, Number(arr[2]));
+    routeChanged: function(year, month, day) {
+      date = new Date(year, month - 1, day);
+      if (!_.isNaN(date.getTime())) {
+        this.curdate = date;
+      }
     },
     
     navigateDay: function(th) {
-      var date = new Date(
-        this.curdate.getFullYear(),
-        this.curdate.getMonth(),
-        this.curdate.getDate() + th);
+      var date = new Date(this.curdate);
+      date.setDate(date.getDate() + th);
       
-      var route = '#!/news/'
-        + date.getFullYear() + '/'
-        + (date.getMonth() + 1) + '/'
-        + date.getDate();
+      var route = '#!/news/' + date.toLocaleDateString('zh');
       
       window.router.navigate(route, {trigger: true});
     },

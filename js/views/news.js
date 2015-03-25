@@ -2,7 +2,8 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'collections/news'
+  'collections/news',
+  'views/title'
 ], function($, _, Backbone, newsCollection) {
 
   var IndexView = Backbone.View.extend({
@@ -42,14 +43,14 @@ define([
       if (resp.status === 404) {
         this.$el.html(
           '<div class="error">\
-            <h2>Not Found</h2>\
-            <p>呀, 等一等呗, 这天的数据还没同步呢!</p>\
+            <h2>Not Found.</h2>\
+            <p>呀, 等等呗, 这天的数据还没同步呢!</p>\
           </div>');
       } else {
         this.$el.html(
           '<div class="error">\
-            <h2>WHOOOPS~</h2>\
-            <p>嗯, 检查你的网络先!</p>\
+            <h2>Whoops.</h2>\
+            <p>嗯, 检查你的网络先~</p>\
           </div>');
       }
     },
