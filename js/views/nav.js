@@ -27,8 +27,11 @@ define([
     navigateDay: function(th) {
       var date = new Date(this.curdate);
       date.setDate(date.getDate() + th);
-      
-      var route = '#!/news/' + date.toLocaleDateString('zh');
+
+      var route = '#!/news/'
+        + date.getFullYear() + '/'
+        + (date.getMonth() + 1) + '/'
+        + date.getDate();
       
       window.router.navigate(route, {trigger: true});
     },
