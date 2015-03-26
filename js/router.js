@@ -24,7 +24,5 @@ define([
     }
   });
 
-  window.router = new Router();
-  
-  return window.router;
+  return new Router();
 })

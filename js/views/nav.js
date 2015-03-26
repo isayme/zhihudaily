@@ -1,8 +1,9 @@
 define([
   'jquery',
   'underscore',
-  'backbone'
-], function($, _, Backbone) {
+  'backbone',
+  'router'
+], function($, _, Backbone, router) {
 
   var NavView = Backbone.View.extend({
     el: '#nav',
@@ -14,7 +15,7 @@ define([
 
     initialize: function() {
       this.curdate = new Date();
-      this.listenTo(window.router, 'route:news', this.routeChanged);
+      this.listenTo(router, 'route:news', this.routeChanged);
     },
     
     routeChanged: function(year, month, day) {
@@ -33,7 +34,7 @@ define([
         + (date.getMonth() + 1) + '/'
         + date.getDate();
       
-      window.router.navigate(route, {trigger: true});
+      router.navigate(route, {trigger: true});
     },
     
     prevDay: function() {
