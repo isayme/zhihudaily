@@ -16,6 +16,14 @@ define([
     initialize: function() {
       this.curdate = new Date();
       this.listenTo(router, 'route:news', this.routeChanged);
+      
+      $('body').keydown(function(e) {
+        if(e.which == 37) { // left keypress
+           $('.prev').trigger('click');
+        } else if(e.which == 39) { // right keypress
+           $('.next').trigger('click');
+        }
+      });
     },
     
     routeChanged: function(year, month, day) {
