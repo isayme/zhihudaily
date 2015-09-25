@@ -1,0 +1,29 @@
+{
+  "name": "zhihudaily",
+  "version": "1.0.0",
+  "description": "这是另一个知乎日报网页版, 之所以是另一个, 主要是因为之前已经存在多个网页版.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isayme/zhihudaily.git"
+  },
+  "author": "iSayme <isaymeorg@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/isayme/zhihudaily/issues"
+  },
+  "homepage": "https://github.com/isayme/zhihudaily#readme",
+  "dependencies": {
+    "async": "^1.4.2",
+    "config": "^1.16.0",
+    "cron": "^1.0.9",
+    "debug": "^2.2.0",
+    "moment": "^2.10.6",
+    "qiniu": "^6.1.8",
+    "redis": "^2.0.1",
+    "urllib": "^2.4.0"
+  }
+}
