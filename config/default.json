@@ -6,5 +6,8 @@
   "qiniu": {
     "accessKey": "",
     "secretKey": ""
+  },
+  "zhihudaily": {
+    "expire": 86400
   }
 }
